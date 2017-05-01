@@ -2,7 +2,7 @@ const fs    = require('fs');
 const axios = require('axios');
 const url   = require('url');
 
-const number = process.argv[2] > 50 ? process.argv[2] : 50,
+const number = process.argv[2] <= 50 ? process.argv[2] : 50,
       query  = process.argv[3],
       width  = process.argv[4],
       height = process.argv[5],
@@ -14,10 +14,7 @@ const fetchImage = (searchUrl, name, count) => {
   return axios({
     method:'get',
     url: searchUrl,
-    responseType:'stream',
-    onDownloadProgress: (progressEvent) => {
-      console.log("###")
-    },
+    responseType:'stream'
   })
   .then((response) => {
     console.log(`Found Photo #${count}`)
