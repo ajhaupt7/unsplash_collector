@@ -26,8 +26,14 @@ const formatPath = (path) => {
   }
 } 
 
+program.on('--help', function(){
+  console.log('  Example:');
+  console.log('');
+  console.log('    node app.js --number=10  --width=800,1200 --height=200,400 --keywords=horses --path=~/Design/Stock --prefix=kentucky_derby');
+  console.log('');
+});
+
 program
-  .version('0.0.1')
   .option('-w, --width [width]', 'specify width in px (for a range, include two numbers separated by comma (ex: 600,1200)')
   .option('-h, --height [height]', 'specify height in px (for a range, include two numbers separated by comma (ex: 600,1200)')
   .option('-n, --number [number]', 'number of images to download (required), max 50')

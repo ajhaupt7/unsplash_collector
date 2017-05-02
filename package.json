@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Bulk downloads random unsplash images by size + category",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
+  "scripts": {},
   "author": "Andrew Haupt",
   "license": "ISC",
   "dependencies": {
