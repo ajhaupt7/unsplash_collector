@@ -8,13 +8,10 @@
   },
   "author": "Andrew Haupt",
   "license": "ISC",
-  "devDependencies": {
-    "axios": "^0.16.1"
-  },
   "dependencies": {
+    "axios": "^0.16.1",
     "commander": "^2.9.0",
     "lodash": "^4.17.4",
-    "minimist": "^1.2.0",
     "mkdirp": "^0.5.1"
   }
 }
