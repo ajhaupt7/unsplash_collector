@@ -1,11 +1,10 @@
 const fs         = require('fs');
 const axios      = require('axios');
 const url        = require('url');
-const parseArgs  = require('minimist');
 const random     = require('lodash/random');
 const mkdirp     = require('mkdirp');
 const os         = require('os');
-const getDirName = require('path').dirname;
+const program    = require('commander');
 
 const createNumRange = (num) => {
   const numString = num ? num.toString() : '[800,1600]';
@@ -27,19 +26,22 @@ const formatPath = (path) => {
   }
 } 
 
-const args      = parseArgs(process.argv.slice(2)),
-      help      = args.help,
-      number    = args.number <= 50 ? (args.number <= 50 ? args.number : 50) : null,
-      keywords  = args.keywords,
-      prefix    = args.prefix || `${keywords ? keywords.replace(",", "_") : ''}_photo`,
-      width     = createNumRange(args.width),
-      height    = createNumRange(args.height),
-      writeDir  = args.path ? formatPath(args.path) : '.';
+program
+  .version('0.0.1')
+  .option('-w, --width [width]', 'specify width in px (for a range, include two numbers separated by comma (ex: 600,1200)')
+  .option('-h, --height [height]', 'specify height in px (for a range, include two numbers separated by comma (ex: 600,1200)')
+  .option('-n, --number [number]', 'number of images to download (required), max 50')
+  .option('-k, --keywords [keywords]', 'string of keyword(s) to search, seprated by commas')
+  .option('-x, --prefix [prefix]', 'prefix for the file names of downloaded files')
+  .option('-p, --path [path]', 'path to write downloaded files to')
+  .parse(process.argv);
 
-if (help) {
-  console.log("Options:");
-  return false; 
-}
+const number    = program.number <= 50 ? (program.number <= 50 ? program.number : 50) : null,
+      keywords  = program.keywords,
+      prefix    = program.prefix || `${keywords && keywords.length ? keywords.replace(",", "_") : ''}_photo`,
+      width     = createNumRange(program.width),
+      height    = createNumRange(program.height),
+      writeDir  = program.path.length ? formatPath(program.path) : '.';
 
 if (!number) {
   console.log("You have to specify the number of images to download.");
