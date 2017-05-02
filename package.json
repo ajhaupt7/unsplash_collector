@@ -10,5 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "axios": "^0.16.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "minimist": "^1.2.0"
   }
 }
