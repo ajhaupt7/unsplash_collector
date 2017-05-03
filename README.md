@@ -2,7 +2,9 @@
 Bulk downloads unsplash images by size + category
 
 ## Usage
-  app [options]
+  1. clone repository
+  2. npm install
+  3. node app.js [-options]
 
   Options:
 
